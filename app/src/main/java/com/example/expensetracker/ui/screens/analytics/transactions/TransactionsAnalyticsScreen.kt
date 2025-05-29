@@ -43,9 +43,10 @@ import com.github.tehras.charts.piechart.animation.simpleChartAnimation
 
 @Composable
 fun TransactionsAnalyticsScreen(
-    viewModel: AnalyticsScreenViewModel = hiltViewModel(),
     onTransactionCardClicked: (String) -> Unit,
 ) {
+    val viewModel: AnalyticsScreenViewModel = hiltViewModel()
+
     val transactionsState = viewModel.graphData.value
         .map { data -> data.collectAsStateWithLifecycle(initialValue = emptyList()) }
         .map { state -> state.value.map { it.toExternalModel() } }

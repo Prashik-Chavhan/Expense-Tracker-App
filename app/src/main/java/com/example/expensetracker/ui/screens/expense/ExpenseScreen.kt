@@ -35,7 +35,7 @@ import com.example.expensetracker.ui.components.LoadingComponent
 fun ExpenseScreen(
     modifier: Modifier = Modifier,
     viewModel: ExpenseScreenViewModel = hiltViewModel(),
-    navigateBack: () -> Unit,
+    onNavBackClicked: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val deleteExpenseUiState by viewModel.deleteExpenseUiState.collectAsStateWithLifecycle()
@@ -44,7 +44,8 @@ fun ExpenseScreen(
         deleteExpenseUiState = deleteExpenseUiState,
         setDeleteExpense = viewModel::setDeleteExpense,
         toggleDeleteExpenseDialog = viewModel::toggleDeleteExpenseDialogVisibility,
-        deleteExpense = { viewModel.deleteExpense(navigateBack) }
+        deleteExpense = { viewModel.deleteExpense(onNavBackClicked) },
+        onNavBackClicked = { onNavBackClicked() }
     )
 }
 
@@ -55,6 +56,7 @@ fun ExpenseScreenContent(
     setDeleteExpense: (Expense?) -> Unit,
     toggleDeleteExpenseDialog: () -> Unit,
     deleteExpense: () -> Unit,
+    onNavBackClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -62,7 +64,7 @@ fun ExpenseScreenContent(
         topBar = {
             CustomTopAppBar(
                 title = stringResource(id = R.string.expense),
-                onNavBackClicked = {}
+                onNavBackClicked = { onNavBackClicked() }
             )
         }
     ) { paddingValues ->

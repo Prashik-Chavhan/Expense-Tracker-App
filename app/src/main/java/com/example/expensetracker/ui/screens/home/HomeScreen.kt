@@ -57,8 +57,9 @@ fun HomeScreen(
     onAllExpensesClicked: () -> Unit,
     onExpenseCardClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: HomeScreenViewModel = hiltViewModel()
 ) {
+    val viewModel: HomeScreenViewModel = hiltViewModel()
+
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
 

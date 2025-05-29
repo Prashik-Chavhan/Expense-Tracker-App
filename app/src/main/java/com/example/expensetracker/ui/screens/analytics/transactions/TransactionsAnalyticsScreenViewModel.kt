@@ -35,8 +35,8 @@ class AnalyticsScreenViewModel @Inject constructor(
 ) : ViewModel(){
     val todayDate = generateFormatDate(LocalDate.now())
     val weekDates = getWeekDates(dateString = todayDate)
-    val sevendaysBefore = generate7daysPriorDate(todayDate)
-    val sevenDaysBeforeDates = datesBetween(sevendaysBefore, todayDate)
+    val sevenDaysBefore = generate7daysPriorDate(todayDate)
+    val sevenDaysBeforeDates = datesBetween(sevenDaysBefore, todayDate)
     val monthDates = getMonthDates(dateString = todayDate)
 
     private val _graphData = mutableStateOf<List<Flow<List<TransactionEntity>>>>(emptyList())
