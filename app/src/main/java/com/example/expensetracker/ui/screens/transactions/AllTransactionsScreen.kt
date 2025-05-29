@@ -80,7 +80,6 @@ fun AllTransactionsScreenContent(
                     modifier = modifier
                         .fillMaxSize()
                         .padding(paddingValues)
-                        .padding(5.dp)
                 ) {
                     LazyRow(
                         modifier = Modifier.fillMaxWidth()

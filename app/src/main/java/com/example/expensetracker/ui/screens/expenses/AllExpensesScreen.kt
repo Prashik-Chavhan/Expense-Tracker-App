@@ -79,10 +79,11 @@ fun AllExpensesScreenContent(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(paddingValues)
-                        .padding(5.dp)
                 ) {
                     LazyRow(
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
                     ) {
                         item {
                             FilterCard(

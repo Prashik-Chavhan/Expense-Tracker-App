@@ -72,7 +72,6 @@ fun SearchScreen(
         .value
         .map { it.toExternalModel() }
 
-
     SearchScreenContent(
         uiState = uiState.value,
         transactionCategories = transactionCategories,
@@ -81,7 +80,8 @@ fun SearchScreen(
         onChangeTransactionStartDate = viewModel::onChangeTransactionStartDate,
         onChangeTransactionEndDate = viewModel::onChangeTransactionEndDate,
         onTransactionCardClicked = { transactionId -> onTransactionCardClicked(transactionId) },
-        eventFlow = viewModel.eventFlow
+        eventFlow = viewModel.eventFlow,
+        modifier = modifier
     )
 }
 
@@ -199,7 +199,7 @@ fun SearchScreenContent(
                 .fillMaxSize()
                 .background(color = MaterialTheme.colorScheme.background)
                 .padding(paddingValues)
-                .padding(horizontal = 10.dp)
+                .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             item {
                 val startLocalDate =
@@ -236,7 +236,8 @@ fun SearchScreenContent(
                     Column(
                         modifier = Modifier
                             .weight(1f),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         val remWidth = LocalWindowInfo.current.containerSize.width
                         val selectedIndex = uiState.transactionCategory?.let { cat ->

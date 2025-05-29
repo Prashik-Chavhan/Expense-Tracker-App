@@ -1,7 +1,7 @@
 package com.example.expensetracker.ui.navigation
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Home
@@ -39,6 +39,7 @@ import com.example.expensetracker.ui.screens.search.SearchScreen
 import com.example.expensetracker.ui.screens.settings.SettingsScreen
 
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
 fun BottomNavigationWrapper(
@@ -94,7 +95,7 @@ fun BottomNavigationWrapper(
                 }
             )
         }
-    ) { innerPadding ->
+    ) {
         BottomNavigation(
             navController = navController,
             onAllIncomeClicked = { onAllIncomeClicked() },
@@ -104,7 +105,7 @@ fun BottomNavigationWrapper(
             onAllExpensesClicked = { onAllExpensesClicked() },
             onExpenseCardClicked = { expenseId -> onExpenseCardClicked(expenseId) },
             onAboutClicked = { onAboutClicked() },
-            modifier = modifier.padding(innerPadding),
+            modifier = modifier,
         )
     }
 }

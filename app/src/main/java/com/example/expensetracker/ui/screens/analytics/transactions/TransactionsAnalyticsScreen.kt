@@ -176,7 +176,8 @@ fun TransactionsAnalyticsScreenContent(
                         ),
                         yAxisDrawer = SimpleYAxisDrawer(
                             axisLineThickness = 1.dp,
-                            axisLineColor = MaterialTheme.colorScheme.onBackground
+                            axisLineColor = MaterialTheme.colorScheme.onBackground,
+                            labelTextColor = MaterialTheme.colorScheme.onBackground
                         ),
                         labelDrawer = SimpleValueDrawer(
                             drawLocation = SimpleValueDrawer.DrawLocation.XAxis,

@@ -125,7 +125,7 @@ fun AppNavigation(
             popExitTransition = { popExitAnimation }
         ) {
             AllExpensesScreen(
-                navigateToExpenseScreen = { navController.navigate(Screens.EXPENSE_SCREEN) },
+                navigateToExpenseScreen = { expenseId -> navController.navigate(Screens.EXPENSE_SCREEN + "/$expenseId") },
                 onNavBackClicked = { navController.navigateUp() }
             )
         }

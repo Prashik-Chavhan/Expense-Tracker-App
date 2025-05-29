@@ -20,7 +20,6 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -64,7 +63,8 @@ fun AddIncomeBottomSheet(
         addIncome = {
             viewModel.addIncome()
             onAddIncome()
-        }
+        },
+        modifier = modifier
     )
 }
 
@@ -105,6 +105,7 @@ fun AddIncomeBottomSheetContent(
             onValueChange = {
                 onChangeIncomeName(it)
             },
+            singleLine = true,
             modifier = Modifier
                 .fillMaxWidth(),
             placeholder = {
@@ -122,6 +123,7 @@ fun AddIncomeBottomSheetContent(
             onValueChange = {
                 onChangeIncomeAmount(it)
             },
+            singleLine = true,
             modifier = Modifier
                 .fillMaxWidth(),
             placeholder = {

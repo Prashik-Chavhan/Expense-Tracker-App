@@ -30,8 +30,8 @@ fun SettingsRow(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
             .clip(shape = RoundedCornerShape(13.dp))
+            .padding(horizontal = 16.dp, vertical = 8.dp)
             .clickable { onItemClicked() },
         shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(

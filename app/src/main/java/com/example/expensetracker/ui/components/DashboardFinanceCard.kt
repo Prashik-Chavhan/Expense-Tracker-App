@@ -38,8 +38,7 @@ fun DashboardFinanceCard(
         modifier = modifier
             .fillMaxWidth()
             .height(70.dp)
-            .clickable { onItemClicked(id) }
-            .padding(4.dp),
+            .clickable { onItemClicked(id) },
         shape = RoundedCornerShape(15),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,

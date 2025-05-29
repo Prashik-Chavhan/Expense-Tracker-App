@@ -1,8 +1,16 @@
 package com.example.expensetracker.ui.bottomsheets.view
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -10,7 +18,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -64,14 +71,8 @@ fun AddTransactionCategoryBottomSheetContent(
     addTransactionCategory: () -> Unit
 ) {
     val keyBoard = LocalSoftwareKeyboardController.current
-//    Box(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .height(250.dp)
-//    ){
     Column(
         modifier = Modifier
-//            .background(color = MaterialTheme.colorScheme.onBackground)
             .fillMaxSize()
             .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -85,7 +86,6 @@ fun AddTransactionCategoryBottomSheetContent(
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-//                style = TextStyle(color = MaterialTheme.colorScheme.primary),
                 text = "Create Transaction Category",
                 fontWeight = FontWeight.Bold,
                 fontSize = 22.sp,
@@ -97,24 +97,18 @@ fun AddTransactionCategoryBottomSheetContent(
             onValueChange = {
                 onChangeTransactionCategoryName(it)
             },
+            singleLine = true,
             modifier = Modifier
                 .fillMaxWidth(),
             placeholder = {
                 Text(
-                    text = "Transaction Category Name",
-//                    style = TextStyle(color = MaterialTheme.colorScheme.primary)
+                    text = "Transaction Category Name"
                 )
             }
         )
         Button(
             modifier = Modifier
                 .fillMaxWidth(),
-//            colors = ButtonColors(
-//                contentColor = MaterialTheme.colorScheme.onBackground,
-//                containerColor = MaterialTheme.colorScheme.background,
-//                disabledContainerColor = MaterialTheme.colorScheme.primary,
-//                disabledContentColor = MaterialTheme.colorScheme.onPrimary,
-//            ),
             onClick = {
                 keyBoard?.hide()
                 addTransactionCategory()
@@ -123,15 +117,7 @@ fun AddTransactionCategoryBottomSheetContent(
         ) {
             Text(
                 text = "Save",
-//                style = TextStyle(color = MaterialTheme.colorScheme.primary)
             )
-
         }
-
-
     }
-//        if (formState.isLoading){
-//            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-//        }
-//    }
 }

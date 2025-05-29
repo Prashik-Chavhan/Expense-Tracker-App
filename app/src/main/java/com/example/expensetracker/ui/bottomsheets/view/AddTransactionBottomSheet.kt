@@ -165,7 +165,6 @@ fun AddTransactionBottomSheetContent(
         datePickerState.selectedDateMillis?.let {
             onChangeTransactionDate(convertTimeMillisToLocalDate(it))
         }
-//        onChangeTransactionTime(convertFormattedToNanoTime(getFormattedTime))
         onChangeTransactionTime(getFormattedTime(selectedHour = selectedHour.intValue, selectedMinute = selectedMinute.intValue))
     }
     Box(
@@ -175,8 +174,6 @@ fun AddTransactionBottomSheetContent(
     ) {
         Column(
             modifier = Modifier
-//                .background(color = MaterialTheme.colorScheme.onBackground)
-//                .fillMaxSize()
                 .padding(10.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -201,6 +198,7 @@ fun AddTransactionBottomSheetContent(
                 onValueChange = {
                     onChangeTransactionName(it)
                 },
+                singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = {
                     Text(
@@ -224,6 +222,7 @@ fun AddTransactionBottomSheetContent(
                     onValueChange = {
                         onChangeTransactionAmount(it)
                     },
+                    singleLine = true,
                     modifier = Modifier.fillMaxWidth(0.5f),
                     placeholder = {
                         Text(

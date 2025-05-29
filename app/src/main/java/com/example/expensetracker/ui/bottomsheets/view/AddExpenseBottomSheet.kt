@@ -75,7 +75,8 @@ fun AddExpenseBottomSheet(
         addExpense = {
             viewModel.addExpense()
             onClicked()
-        }
+        },
+        modifier = modifier
     )
 }
 
@@ -117,6 +118,7 @@ fun AddExpenseBottomSheetContent(
             onValueChange = {
                 onChangeExpenseName(it)
             },
+            singleLine = true,
             modifier = Modifier.fillMaxWidth(),
             placeholder = {
                 Text(
@@ -138,6 +140,7 @@ fun AddExpenseBottomSheetContent(
                 onValueChange = {
                     onChangeExpenseAmount(it)
                 },
+                singleLine = true,
                 modifier = Modifier.fillMaxWidth(0.5f),
                 placeholder = {
                     Text(

@@ -61,7 +61,8 @@ fun AddExpenseCategoryBottomSheet(
         addExpenseCategory = {
             viewModel.addExpenseCategory()
             onClicked()
-        }
+        },
+        modifier = modifier
     )
 }
 
@@ -104,6 +105,7 @@ fun AddExpenseCategoryBottomSheetContent(
             onValueChange = {
                 onChangeExpenseCategoryName(it)
             },
+            singleLine = true,
             modifier = Modifier.fillMaxWidth(),
             placeholder = {
                 Text(

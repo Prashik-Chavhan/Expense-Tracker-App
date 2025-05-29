@@ -76,7 +76,8 @@ fun HomeScreen(
         onAllTransactionsClicked = { onAllTransactionsClicked() },
         onTransactionCardClicked = { transactionId -> onTransactionCardClicked(transactionId) },
         onAllExpensesClicked = { onAllExpensesClicked() },
-        onExpenseCardClicked = { expenseId -> onExpenseCardClicked(expenseId) }
+        onExpenseCardClicked = { expenseId -> onExpenseCardClicked(expenseId) },
+        modifier = modifier
     )
 }
 
@@ -189,7 +190,7 @@ fun HomeScreenContent(
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                         .padding(paddingValues)
-                        .padding(horizontal = 10.dp)
+                        .padding(horizontal = 16.dp)
                 ) {
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
@@ -274,7 +275,10 @@ fun HomeScreenContent(
                                     createdAt = income.incomeCreatedAt,
                                     onItemClicked = { incomeId ->
                                         onIncomeCardClicked(incomeId)
-                                    }
+                                    },
+                                    modifier = Modifier.padding(
+                                        vertical = 8.dp
+                                    )
                                 )
                             }
                         }
@@ -302,7 +306,10 @@ fun HomeScreenContent(
                                     createdAt = transaction.transactionCreatedOn,
                                     onItemClicked = { transactionId ->
                                         onTransactionCardClicked(transactionId)
-                                    }
+                                    },
+                                    modifier = Modifier.padding(
+                                        vertical = 8.dp
+                                    )
                                 )
                             }
                         }
@@ -330,7 +337,10 @@ fun HomeScreenContent(
                                     createdAt = expense.expenseUpdatedOn,
                                     onItemClicked = { expenseId ->
                                         onExpenseCardClicked(expenseId)
-                                    }
+                                    },
+                                    modifier = Modifier.padding(
+                                        vertical = 8.dp
+                                    )
                                 )
                             }
                         }
