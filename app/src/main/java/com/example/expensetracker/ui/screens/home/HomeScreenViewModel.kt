@@ -64,7 +64,7 @@ class HomeScreenViewModel @Inject constructor(
         .catch { HomeScreenUiState.Error(message = "Failed to load your data") }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L),
+            started = SharingStarted.Eagerly,
             initialValue = HomeScreenUiState.Loading
         )
 
