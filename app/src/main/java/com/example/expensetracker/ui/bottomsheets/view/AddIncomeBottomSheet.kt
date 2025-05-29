@@ -32,17 +32,6 @@ import com.example.expensetracker.ui.bottomsheets.viewModels.AddIncomeFormState
 import com.example.expensetracker.ui.bottomsheets.viewModels.AddIncomeScreenViewModel
 import kotlinx.coroutines.flow.collectLatest
 
-@Preview
-@Composable
-fun AddIncomeBottomSheetPreview() {
-    AddIncomeBottomSheetContent(
-        formState = AddIncomeFormState(),
-        onChangeIncomeName = { },
-        onChangeIncomeAmount = { },
-        addIncome = { }
-    )
-}
-
 @Composable
 fun AddIncomeBottomSheet(
     onAddIncome: () -> Unit,
