@@ -1,6 +1,5 @@
 package com.example.expensetracker.ui.screens.analytics.transactions
 
-import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInHorizontally
@@ -29,8 +28,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.expensetracker.core.util.DateUtil.getActualDayOfWeek
 import com.example.expensetracker.core.util.FilterConstants
-import com.example.expensetracker.domain.models.Transaction
 import com.example.expensetracker.domain.Mappers.toExternalModel
+import com.example.expensetracker.domain.models.Transaction
 import com.example.expensetracker.ui.components.DashboardFinanceCard
 import com.example.expensetracker.ui.components.GraphFilterCard
 import com.github.tehras.charts.bar.BarChart
@@ -87,7 +86,6 @@ fun TransactionsAnalyticsScreen(
     )
 }
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun TransactionsAnalyticsScreenContent(
     transactionsState: List<Transaction>,
@@ -104,14 +102,14 @@ fun TransactionsAnalyticsScreenContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(10.dp),
+                .padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.Start,
         ) {
             item {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                    ) {
+                ) {
                     Text(
                         text = "INR ${transactions.sumOf { transaction -> transaction.transactionAmount }} /=",
                         fontWeight = FontWeight.Bold,
@@ -233,7 +231,8 @@ fun TransactionsAnalyticsScreenContent(
                     createdAt = transaction.transactionCreatedOn,
                     onItemClicked = { transactionId ->
                         onTransactionCardClicked(transactionId)
-                    }
+                    },
+                    modifier = Modifier.padding(vertical = 8.dp)
                 )
             }
         }

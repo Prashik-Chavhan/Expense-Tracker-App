@@ -166,7 +166,8 @@ fun HomeScreenContent(
             CustomTopAppBar(
                 title = stringResource(id = R.string.app_name),
                 canNavigateBack = false,
-                onNavBackClicked = {}
+                onNavBackClicked = {},
+                modifier = Modifier
             )
         }
     ) { paddingValues ->
@@ -185,164 +186,160 @@ fun HomeScreenContent(
                 val totalTransaction = uiState.transactions.sumOf { it.transactionAmount }
 
                 val remainingIncome = totalIncome - (totalExpense + totalTransaction)
-                Column(
-                    modifier = modifier
+                LazyColumn(
+                    modifier = Modifier
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                         .padding(paddingValues)
-                        .padding(horizontal = 16.dp)
+                        .padding(horizontal = 16.dp),
                 ) {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                    ) {
-                        item {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .height(100.dp),
-                                horizontalAlignment = Alignment.Start,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Text(
-                                    text = "Your Income ",
-                                    color = MaterialTheme.colorScheme.onBackground,
-                                    fontWeight = FontWeight.Medium,
-                                    fontSize = 16.sp
-                                )
-                                Text(
-                                    text = "INR $remainingIncome /=",
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 30.sp,
-                                    color = MaterialTheme.colorScheme.onBackground
-                                )
-                            }
-                        }
-                        item {
-                            HomeScreenActionsGrid { index ->
-                                when (index) {
-                                    0 -> {
-                                        onBottomSheetChange(
-                                            BottomSheets.ADD_INCOME
-                                        )
-                                    }
-
-                                    1 -> {
-                                        onBottomSheetChange(
-                                            BottomSheets.ADD_TRANSACTION
-                                        )
-                                    }
-
-                                    2 -> {
-                                        onBottomSheetChange(
-                                            BottomSheets.ADD_EXPENSE
-                                        )
-                                    }
-
-                                    3 -> {
-                                        onBottomSheetChange(
-                                            BottomSheets.ADD_TRANSACTION_CATEGORY
-                                        )
-                                    }
-
-                                    4 -> {
-                                        onBottomSheetChange(
-                                            BottomSheets.ADD_EXPENSE_CATEGORY
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                        item {
-                            HomeSubHeader(
-                                name = "Income",
-                                onClick = {
-                                    onAllIncomeClicked()
-                                }
+                    item {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .height(100.dp),
+                            horizontalAlignment = Alignment.Start,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = "Your Income ",
+                                color = MaterialTheme.colorScheme.onBackground,
+                                fontWeight = FontWeight.Medium,
+                                fontSize = 16.sp
+                            )
+                            Text(
+                                text = "INR $remainingIncome /=",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp,
+                                color = MaterialTheme.colorScheme.onBackground
                             )
                         }
-                        if (uiState.income.isEmpty()) {
-                            item {
-                                EmptyComponent(message = "No income saved")
-                            }
-                        } else {
-                            items(
-                                items = uiState.income.take(n = 2),
-                                key = { it.incomeId }) { income ->
-                                DashboardFinanceCard(
-                                    id = income.incomeId,
-                                    name = income.incomeName,
-                                    amount = income.incomeAmount,
-                                    createdAt = income.incomeCreatedAt,
-                                    onItemClicked = { incomeId ->
-                                        onIncomeCardClicked(incomeId)
-                                    },
-                                    modifier = Modifier.padding(
-                                        vertical = 8.dp
+                    }
+                    item {
+                        HomeScreenActionsGrid { index ->
+                            when (index) {
+                                0 -> {
+                                    onBottomSheetChange(
+                                        BottomSheets.ADD_INCOME
                                     )
-                                )
-                            }
-                        }
+                                }
 
-                        item {
-                            HomeSubHeader(
-                                name = "Transactions",
-                                onClick = {
-                                    onAllTransactionsClicked()
+                                1 -> {
+                                    onBottomSheetChange(
+                                        BottomSheets.ADD_TRANSACTION
+                                    )
                                 }
+
+                                2 -> {
+                                    onBottomSheetChange(
+                                        BottomSheets.ADD_EXPENSE
+                                    )
+                                }
+
+                                3 -> {
+                                    onBottomSheetChange(
+                                        BottomSheets.ADD_TRANSACTION_CATEGORY
+                                    )
+                                }
+
+                                4 -> {
+                                    onBottomSheetChange(
+                                        BottomSheets.ADD_EXPENSE_CATEGORY
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    item {
+                        HomeSubHeader(
+                            name = "Income",
+                            onClick = {
+                                onAllIncomeClicked()
+                            }
+                        )
+                    }
+                    if (uiState.income.isEmpty()) {
+                        item {
+                            EmptyComponent(message = "No income saved")
+                        }
+                    } else {
+                        items(
+                            items = uiState.income.take(n = 2),
+                            key = { it.incomeId }) { income ->
+                            DashboardFinanceCard(
+                                id = income.incomeId,
+                                name = income.incomeName,
+                                amount = income.incomeAmount,
+                                createdAt = income.incomeCreatedAt,
+                                onItemClicked = { incomeId ->
+                                    onIncomeCardClicked(incomeId)
+                                },
+                                modifier = Modifier.padding(
+                                    vertical = 8.dp
+                                )
                             )
                         }
-                        if (uiState.transactions.isEmpty()) {
-                            item {
-                                EmptyComponent(message = "No transactions saved")
+                    }
+
+                    item {
+                        HomeSubHeader(
+                            name = "Transactions",
+                            onClick = {
+                                onAllTransactionsClicked()
                             }
-                        } else {
-                            items(
-                                items = uiState.transactions.take(n = 2),
-                                key = { it.transactionId }) { transaction ->
-                                DashboardFinanceCard(
-                                    id = transaction.transactionId,
-                                    name = transaction.transactionName,
-                                    amount = transaction.transactionAmount,
-                                    createdAt = transaction.transactionCreatedOn,
-                                    onItemClicked = { transactionId ->
-                                        onTransactionCardClicked(transactionId)
-                                    },
-                                    modifier = Modifier.padding(
-                                        vertical = 8.dp
-                                    )
-                                )
-                            }
-                        }
+                        )
+                    }
+                    if (uiState.transactions.isEmpty()) {
                         item {
-                            HomeSubHeader(
-                                name = "Expenses",
-                                onClick = {
-                                    onAllExpensesClicked()
-                                }
+                            EmptyComponent(message = "No transactions saved")
+                        }
+                    } else {
+                        items(
+                            items = uiState.transactions.take(n = 2),
+                            key = { it.transactionId }) { transaction ->
+                            DashboardFinanceCard(
+                                id = transaction.transactionId,
+                                name = transaction.transactionName,
+                                amount = transaction.transactionAmount,
+                                createdAt = transaction.transactionCreatedOn,
+                                onItemClicked = { transactionId ->
+                                    onTransactionCardClicked(transactionId)
+                                },
+                                modifier = Modifier.padding(
+                                    vertical = 8.dp
+                                )
                             )
                         }
-                        if (uiState.expenses.isEmpty()) {
-                            item {
-                                EmptyComponent(message = "No expenses saved")
+                    }
+                    item {
+                        HomeSubHeader(
+                            name = "Expenses",
+                            onClick = {
+                                onAllExpensesClicked()
                             }
-                        } else {
-                            items(
-                                items = uiState.expenses.take(n = 2),
-                                key = { it.expenseId }
-                            ) { expense ->
-                                DashboardFinanceCard(
-                                    id = expense.expenseId,
-                                    name = expense.expenseName,
-                                    amount = expense.expenseAmount,
-                                    createdAt = expense.expenseUpdatedOn,
-                                    onItemClicked = { expenseId ->
-                                        onExpenseCardClicked(expenseId)
-                                    },
-                                    modifier = Modifier.padding(
-                                        vertical = 8.dp
-                                    )
+                        )
+                    }
+                    if (uiState.expenses.isEmpty()) {
+                        item {
+                            EmptyComponent(message = "No expenses saved")
+                        }
+                    } else {
+                        items(
+                            items = uiState.expenses.take(n = 2),
+                            key = { it.expenseId }
+                        ) { expense ->
+                            DashboardFinanceCard(
+                                id = expense.expenseId,
+                                name = expense.expenseName,
+                                amount = expense.expenseAmount,
+                                createdAt = expense.expenseUpdatedOn,
+                                onItemClicked = { expenseId ->
+                                    onExpenseCardClicked(expenseId)
+                                },
+                                modifier = Modifier.padding(
+                                    vertical = 8.dp
                                 )
-                            }
+                            )
                         }
                     }
                 }

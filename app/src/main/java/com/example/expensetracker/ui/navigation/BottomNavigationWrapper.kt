@@ -2,6 +2,7 @@ package com.example.expensetracker.ui.navigation
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Home
@@ -23,6 +24,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -105,7 +107,7 @@ fun BottomNavigationWrapper(
             onAllExpensesClicked = { onAllExpensesClicked() },
             onExpenseCardClicked = { expenseId -> onExpenseCardClicked(expenseId) },
             onAboutClicked = { onAboutClicked() },
-            modifier = modifier,
+            modifier = modifier
         )
     }
 }
@@ -115,12 +117,14 @@ fun BottomNavigationWrapper(
 fun BottomNavBar(
     items: List<BottomNavItem>,
     navController: NavController,
-    onItemClick: (BottomNavItem) -> Unit
+    onItemClick: (BottomNavItem) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val backStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry.value?.destination?.route
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.tertiary,
+        modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.tertiary
     ) {
         items.forEachIndexed { index, item ->
             val isSelected = item.route == currentRoute
@@ -159,7 +163,7 @@ fun BottomNavigation(
     modifier: Modifier = Modifier
 ) {
     NavHost(
-        modifier = modifier,
+        modifier = modifier.padding(bottom = 80.dp),
         navController = navController,
         startDestination = Screens.HOME_SCREEN
     ) {

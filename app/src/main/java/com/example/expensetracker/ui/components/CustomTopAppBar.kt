@@ -3,7 +3,6 @@ package com.example.expensetracker.ui.components
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -13,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.expensetracker.ui.theme.ExpenseTrackerTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,10 +52,4 @@ fun CustomTopAppBar(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun Preview() {
-//    ExpenseTrackerTheme {
-//        CustomTopAppBar(
-//            title = "Title",
-//            onNavBackClicked = {}
-//        )
-//    }
 }
